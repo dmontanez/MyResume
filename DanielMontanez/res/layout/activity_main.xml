@@ -6,7 +6,10 @@
     <FrameLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >       
+        android:layout_height="match_parent" >    
+        
+        <include layout="@layout/content_summary" />
+        
     </FrameLayout>
 	<ListView 
 	    android:id="@+id/drawerList"

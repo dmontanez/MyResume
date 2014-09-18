@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:background="#ffffff" >
+	    
+	    <ScrollView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".9">
+	
+	        <TableLayout
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:showDividers="end" >
+	
+	            <TableRow
+	                android:id="@+id/tableRowPic"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:gravity="center"
+	                android:paddingTop="5dp" >
+	
+	                <ImageView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:src="@drawable/profile_pic" />
+	                
+	            </TableRow>
+	
+	            <TableRow
+	                android:id="@+id/tableRowName"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="#bbffffff"
+	                android:gravity="center"
+	                android:paddingTop="5dp" >
+	                
+	                <TextView
+	                    android:id="@+id/profileName"
+	                    android:layout_width="fill_parent"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center"
+	                    android:text="Name"
+	                    android:textSize="25sp" />
+	                
+	            </TableRow>
+	
+	            <TableRow
+	                android:id="@+id/tableRowPhone"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingTop="5dp" >
+	                
+	                <TextView
+	                    android:id="@+id/phoneNumber"
+	                    android:layout_width="fill_parent"
+	                    android:layout_height="wrap_content"
+	                    android:background="#bbffffff"
+	                    android:paddingLeft="5dp"
+	                    android:paddingRight="5dp"
+	                    android:text="Phone"
+	                    android:textSize="15sp" />
+	                
+	            </TableRow>
+	
+	            <TableRow
+	                android:id="@+id/tableRowEmail"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingTop="5dp" >
+	                
+	                <TextView
+	                    android:id="@+id/emailAddress"
+	                    android:layout_width="fill_parent"
+	                    android:layout_height="wrap_content"
+	                    android:background="#bbffffff"
+	                    android:paddingLeft="5dp"
+	                    android:paddingRight="5dp"
+	                    android:text="Email"
+	                    android:textSize="15sp" />
+	                
+	            </TableRow>
+	            
+	            <TableRow
+	                android:id="@+id/tableRowAddress"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingTop="5dp" >
+	                
+	                <TextView
+	                    android:id="@+id/address"
+	                    android:layout_width="fill_parent"
+	                    android:layout_height="wrap_content"
+	                    android:background="#bbffffff"
+	                    android:paddingLeft="5dp"
+	                    android:paddingRight="5dp"
+	                    android:text="Address"
+	                    android:textSize="15sp" />
+	                
+	            </TableRow>
+	            
+	            <TableRow
+	                android:id="@+id/tableRowSummary"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:paddingTop="5dp" >
+	                
+	                <TextView
+	                    android:id="@+id/summary"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:background="#bbffffff"
+	                    android:paddingLeft="5dp"
+	                    android:paddingRight="5dp"
+	                    android:text="Summary"
+	                    android:textSize="15sp" />
+	                
+	            </TableRow>
+	            
+	        </TableLayout>
+	        
+		</ScrollView>
+		<!--
+		<TableLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:background="#000000"
+		    android:layout_weight=".1" >
+		    
+		    <TableRow android:gravity="center"
+		        android:layout_width="match_parent"
+		        android:layout_height="fill_parent"
+		        android:layout_weight=".15" >
+		        
+		        <ImageButton
+	                    android:id="@+id/imageButton1"                    
+	                    android:src="@android:drawable/ic_menu_call" />
+		        
+		        <ImageButton
+	                    android:id="@+id/imageButton2"
+	                    android:src="@android:drawable/ic_dialog_email" />
+		        
+		        <ImageButton
+	                    android:id="@+id/imageButton3"
+	                    android:src="@android:drawable/ic_menu_compass"
+	                    android:onClick="toggleMenu" />
+	
+		    </TableRow>
+		    
+		</TableLayout> -->
+	</LinearLayout>
