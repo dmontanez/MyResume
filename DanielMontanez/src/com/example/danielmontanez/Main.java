@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -96,6 +98,9 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	//Sets the Action bar title to the title of the navigation button that was clicked.
 	private void selectItem(int position) {
 		listView.setItemChecked(position, true);
+		Fragment fragment = null;
+		FragmentManager frgManager = getSupportFragmentManager();
+        frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
 	}
 	
 }
