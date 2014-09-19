@@ -99,6 +99,7 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	private void selectItem(int position) {
 		listView.setItemChecked(position, true);
 		Fragment fragment = null;
+		fragment = new SummaryActivity();
 		FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
 	}
