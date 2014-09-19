@@ -6,7 +6,6 @@
 
 package com.example.danielmontanez;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 	//Database Data =================================================================================
 	public static final String DATABASE_NAME = "AppResume.db";
-	public static final int VERSION = 2;
+	public static final int VERSION = 4;
 	
 	//=================================================================================
 	//Database Seed Data; Personal Information

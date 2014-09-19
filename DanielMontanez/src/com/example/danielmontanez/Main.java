@@ -1,6 +1,5 @@
 package com.example.danielmontanez;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -8,18 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends ActionBarActivity implements OnItemClickListener{
@@ -30,7 +22,8 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	
 	//Other declarations.
 	private ActionBarDrawerToggle drawerListener; //listener for the drawer; handles the toggling.
-	private MyAdapter myAdapter;
+	private NavDrawerAdapter navAdapter;
+	String[] drawerNavItems;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +33,10 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		//Initialize layout objects.
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 		listView = (ListView) findViewById(R.id.drawerList);
+		drawerNavItems = getResources().getStringArray(R.array.drawerNavItems);
 		
 		//Initialize other declarations.
-		myAdapter = new MyAdapter(this);
+		navAdapter = new NavDrawerAdapter(this);
 		drawerListener = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
 		
 			
@@ -61,7 +55,7 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		drawerLayout.setDrawerListener(drawerListener); //Set the  layout object listener.
 		
 		//Set the navigation drawer adapter.
-		listView.setAdapter(myAdapter);
+		listView.setAdapter(navAdapter);
 		listView.setOnItemClickListener(this);
 		
 		getSupportActionBar().setHomeButtonEnabled(true); //Enables the app icon home button.
@@ -102,53 +96,8 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		fragment = new SummaryActivity();
 		FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
-	}
-	
-}
-
-
-class MyAdapter extends BaseAdapter {
-	
-	private Context context;
-	String[] drawerNavItems;
-	int[] drawerNavIcons= {R.drawable.ic_summary, R.drawable.ic_education, R.drawable.ic_experience, R.drawable.ic_skills, R.drawable.ic_interests};
-	
-	public MyAdapter (Context context) {
-		this.context = context;
-		drawerNavItems = context.getResources().getStringArray(R.array.drawerNavItems);
-	}
-	
-	@Override
-	public int getCount() {
-		return drawerNavItems.length;
-	}
-
-	@Override
-	public Object getItem(int position) {
-		return drawerNavItems[position];
-	}
-
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
-
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		View row = null;
-		if (convertView==null) {
-			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			row = inflater.inflate(R.layout.nav_item_row, parent, false);
-		} else {
-			row = convertView;
-		}
-		ImageView rowImage = (ImageView) row.findViewById(R.id.navRowImage);
-		TextView rowTitle = (TextView) row.findViewById(R.id.navRowTitle);
-		
-		rowImage.setImageResource(drawerNavIcons[position]);
-		rowTitle.setText(drawerNavItems[position]);
-		
-		return row;
+        getSupportActionBar().setTitle(drawerNavItems[position]);
+        drawerLayout.closeDrawers();
 	}
 	
 }
