@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +21,7 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	
 	//Layout object declaration
 	private DrawerLayout drawerLayout;
-	private ListView listView;
+	private ListView listView, listView2;
 	
 	//Other declarations.
 	private ActionBarDrawerToggle drawerListener; //listener for the drawer; handles the toggling.
@@ -45,13 +47,13 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 			@Override //What to do when the drawer is opened.
 			public void onDrawerOpened(View drawerView) {
 				super.onDrawerOpened(drawerView);
-				Toast.makeText(Main.this, " Drawer Opened ", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(Main.this, " Drawer Opened ", Toast.LENGTH_SHORT).show();
 			}
 
 			@Override //What to do when the drawer is closed.
 			public void onDrawerClosed(View drawerView) {
 				super.onDrawerClosed(drawerView);
-				Toast.makeText(Main.this, " Drawer Closed ", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(Main.this, " Drawer Closed ", Toast.LENGTH_SHORT).show();
 			}
 		};
 		drawerLayout.setDrawerListener(drawerListener); //Set the  layout object listener.
@@ -60,9 +62,11 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		listView.setAdapter(navAdapter);
 		listView.setOnItemClickListener(this);
 		
+		/*
 		LayoutInflater inflater = getLayoutInflater();
 		View navHeader = inflater.inflate(R.layout.nav_header, listView, false);
 		listView.addHeaderView(navHeader, null, false);
+		*/
 		
 		getSupportActionBar().setHomeButtonEnabled(true); //Enables the app icon home button.
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Displays the up directory indicator to the left of the icon.
@@ -71,7 +75,9 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
 	}
-
+	
+	
+	
 	@Override //Allows home button to open Navigation Drawer if applicable.
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(drawerListener.onOptionsItemSelected(item)) {return true;}
@@ -100,29 +106,38 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 
 	//Sets the Action bar title to the title of the navigation button that was clicked.
 	private void selectItem(int position) {
-		position = position -1;
 		listView.setItemChecked(position, true);
 		
 		switch (position) {
-			case -1:
-				break;
 			case 0:
+				break;
+			case 1:
 				loadNav_0();
 				break;	
-			case 1:
+			case 2:
 				loadNav_1();
 				break;
-			case 2:
+			case 3:
 				loadNav_2();
 				break;
-			case 3:
+			case 4:
 				loadNav_3();
 				break;
-			case 4:
+			case 5:
 				loadNav_4();
 				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				break;
+			case 9:
+				break;
+			case 10:
+				break;
 			default:
-				loadNav_0();
+				break;
 		}
 		
 		FragmentManager frgManager = getSupportFragmentManager();

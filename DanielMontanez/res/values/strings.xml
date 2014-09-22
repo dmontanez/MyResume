@@ -7,11 +7,17 @@
     <string name="drawer_close">Close Navigation Drawer</string>
     
     <string-array name="drawerNavItems">
+        <item>MENU</item>
 		<item>Summary</item>
 		<item>Education</item>
 		<item>Experience</item>
 		<item>Skills</item>
 		<item>Interests</item>
+		<item>CONTACT</item>
+		<item>Call</item>
+		<item>Email</item>
+		<item>Facebook</item>
+		<item>LinkedIn</item>
     </string-array>
 
 </resources>

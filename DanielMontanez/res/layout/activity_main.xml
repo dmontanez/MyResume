@@ -6,17 +6,19 @@
     <FrameLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >    
+        android:layout_height="match_parent"
+            android:layout_weight="1" >    
         
        <!-- <include layout="@layout/content_summary" /> -->
         
     </FrameLayout>
-
+    
 	<ListView 
 	    android:id="@+id/drawerList"
 	    android:background="#F0F0F0"
 	    android:layout_width="240dp"
-	    android:layout_height="match_parent"
+	    android:layout_height="fill_parent"
 	    android:layout_gravity="left" >
 	</ListView>
+	
 </android.support.v4.widget.DrawerLayout>
