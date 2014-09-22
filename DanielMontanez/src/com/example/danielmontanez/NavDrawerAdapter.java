@@ -48,7 +48,7 @@ public class NavDrawerAdapter extends BaseAdapter{
 		
 		rowImage.setImageResource(drawerNavIcons[position]);
 		rowTitle.setText(drawerNavItems[position]);
-		
+
 		return row;
 	}
 }

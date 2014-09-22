@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	//Other declarations.
 	private ActionBarDrawerToggle drawerListener; //listener for the drawer; handles the toggling.
 	private NavDrawerAdapter navAdapter;
+	private Fragment fragment = null;
 	String[] drawerNavItems;
 
 	@Override
@@ -37,7 +39,7 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		
 		//Initialize other declarations.
 		navAdapter = new NavDrawerAdapter(this);
-		drawerListener = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
+		drawerListener = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_nav_drawer, R.string.drawer_open, R.string.drawer_close) {
 		
 			
 			@Override //What to do when the drawer is opened.
@@ -58,9 +60,16 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		listView.setAdapter(navAdapter);
 		listView.setOnItemClickListener(this);
 		
+		LayoutInflater inflater = getLayoutInflater();
+		View navHeader = inflater.inflate(R.layout.nav_header, listView, false);
+		listView.addHeaderView(navHeader, null, false);
+		
 		getSupportActionBar().setHomeButtonEnabled(true); //Enables the app icon home button.
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Displays the up directory indicator to the left of the icon.
 
+		loadNav_0();
+		FragmentManager frgManager = getSupportFragmentManager();
+        frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
 	}
 
 	@Override //Allows home button to open Navigation Drawer if applicable.
@@ -91,13 +100,56 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 
 	//Sets the Action bar title to the title of the navigation button that was clicked.
 	private void selectItem(int position) {
+		position = position -1;
 		listView.setItemChecked(position, true);
-		Fragment fragment = null;
-		fragment = new SummaryActivity();
+		
+		switch (position) {
+			case -1:
+				break;
+			case 0:
+				loadNav_0();
+				break;	
+			case 1:
+				loadNav_1();
+				break;
+			case 2:
+				loadNav_2();
+				break;
+			case 3:
+				loadNav_3();
+				break;
+			case 4:
+				loadNav_4();
+				break;
+			default:
+				loadNav_0();
+		}
+		
 		FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
+        
         getSupportActionBar().setTitle(drawerNavItems[position]);
         drawerLayout.closeDrawers();
+	}
+	
+	private void loadNav_0 () {
+		fragment = new SummaryActivity();
+	}
+	
+	private void loadNav_1 () {
+		fragment = new EducationActivity();
+	}
+	
+	private void loadNav_2 () {
+		fragment = new ExperienceActivity();
+	}
+	
+	private void loadNav_3 () {
+		fragment = new SkillsActivity();
+	}
+	
+	private void loadNav_4 () {
+		fragment = new InterestsActivity();
 	}
 	
 }

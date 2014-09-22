@@ -63,7 +63,7 @@
 	                    android:paddingRight="5dp"
 	                    android:gravity="center"
 	                    android:text="Phone"
-	                    android:textSize="15sp" />
+	                    android:textSize="20sp" />
 	                
 	            </TableRow>
 	
@@ -83,7 +83,7 @@
 	                    android:paddingRight="5dp"
 	                    android:gravity="center"
 	                    android:text="Email"
-	                    android:textSize="15sp" />
+	                    android:textSize="20sp" />
 	                
 	            </TableRow>
 	            
@@ -103,7 +103,7 @@
 	                    android:paddingRight="5dp"
 	                    android:gravity="center"
 	                    android:text="Address"
-	                    android:textSize="15sp" />
+	                    android:textSize="20sp" />
 	                
 	            </TableRow>
 	            
@@ -119,11 +119,12 @@
 	                    android:layout_width="wrap_content"
 	                    android:layout_height="wrap_content"
 	                    android:background="#bbffffff"
-	                    android:paddingLeft="5dp"
-	                    android:paddingRight="5dp"
+	                    android:paddingTop="10dp"
+	                    android:paddingLeft="20dp"
+	                    android:paddingRight="20dp"
 	                    android:gravity="center"
 	                    android:text="Summary"
-	                    android:textSize="12sp" />
+	                    android:textSize="15sp" />
 	                
 	            </TableRow>
 	            

@@ -11,6 +11,7 @@
        <!-- <include layout="@layout/content_summary" /> -->
         
     </FrameLayout>
+
 	<ListView 
 	    android:id="@+id/drawerList"
 	    android:background="#F0F0F0"
