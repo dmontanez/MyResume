@@ -1,6 +1,8 @@
 package com.example.danielmontanez;
 
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -62,21 +64,13 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		listView.setAdapter(navAdapter);
 		listView.setOnItemClickListener(this);
 		
-		/*
-		LayoutInflater inflater = getLayoutInflater();
-		View navHeader = inflater.inflate(R.layout.nav_header, listView, false);
-		listView.addHeaderView(navHeader, null, false);
-		*/
-		
 		getSupportActionBar().setHomeButtonEnabled(true); //Enables the app icon home button.
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Displays the up directory indicator to the left of the icon.
 
-		loadNav_0();
+		fragment = new SummaryActivity();
 		FragmentManager frgManager = getSupportFragmentManager();
         frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
 	}
-	
-	
 	
 	@Override //Allows home button to open Navigation Drawer if applicable.
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -103,34 +97,43 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 			long id) {
 		selectItem(position);
 	}
+	
+	@Override
+	public void onBackPressed() {
+		if(drawerLayout.isDrawerOpen(listView) == true) {drawerLayout.closeDrawers();}
+		else {super.onBackPressed(); finish();}
+	}
 
 	//Sets the Action bar title to the title of the navigation button that was clicked.
 	private void selectItem(int position) {
 		listView.setItemChecked(position, true);
 		
 		switch (position) {
-			case 0:
-				break;
 			case 1:
-				loadNav_0();
+				fragment = new SummaryActivity();
 				break;	
 			case 2:
-				loadNav_1();
+				fragment = new EducationActivity();
 				break;
 			case 3:
-				loadNav_2();
+				fragment = new ExperienceActivity();
 				break;
 			case 4:
-				loadNav_3();
+				fragment = new SkillsActivity();
 				break;
 			case 5:
-				loadNav_4();
-				break;
-			case 6:
+				fragment = new InterestsActivity();
 				break;
 			case 7:
+				Intent intent = new Intent(Intent.ACTION_DIAL);
+				intent.setData(Uri.parse("tel:6618694325")); // Get number from DB.
+				startActivity(intent); 
 				break;
 			case 8:
+			    Intent emailIntent = new Intent(Intent.ACTION_VIEW);
+			    emailIntent.setData(Uri.parse("mailto:dmontanez86@gmail.com"));
+			    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Resume Inquiry");
+			    startActivity(emailIntent);
 				break;
 			case 9:
 				break;
@@ -140,31 +143,13 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 				break;
 		}
 		
-		FragmentManager frgManager = getSupportFragmentManager();
-        frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
-        
-        getSupportActionBar().setTitle(drawerNavItems[position]);
-        drawerLayout.closeDrawers();
-	}
-	
-	private void loadNav_0 () {
-		fragment = new SummaryActivity();
-	}
-	
-	private void loadNav_1 () {
-		fragment = new EducationActivity();
-	}
-	
-	private void loadNav_2 () {
-		fragment = new ExperienceActivity();
-	}
-	
-	private void loadNav_3 () {
-		fragment = new SkillsActivity();
-	}
-	
-	private void loadNav_4 () {
-		fragment = new InterestsActivity();
+		if (position < 6) {
+			FragmentManager frgManager = getSupportFragmentManager();
+		    frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
+		        
+		    getSupportActionBar().setTitle(drawerNavItems[position]);
+		    drawerLayout.closeDrawers();
+		}
 	}
 	
 }
