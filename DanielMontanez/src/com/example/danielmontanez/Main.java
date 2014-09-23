@@ -108,6 +108,9 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	private void selectItem(int position) {
 		listView.setItemChecked(position, true);
 		
+		Intent intent;
+		String url;
+		
 		switch (position) {
 			case 1:
 				fragment = new SummaryActivity();
@@ -125,19 +128,27 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 				fragment = new InterestsActivity();
 				break;
 			case 7:
-				Intent intent = new Intent(Intent.ACTION_DIAL);
+				intent = new Intent(Intent.ACTION_DIAL);
 				intent.setData(Uri.parse("tel:6618694325")); // Get number from DB.
 				startActivity(intent); 
 				break;
 			case 8:
-			    Intent emailIntent = new Intent(Intent.ACTION_VIEW);
-			    emailIntent.setData(Uri.parse("mailto:dmontanez86@gmail.com"));
-			    emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Resume Inquiry");
-			    startActivity(emailIntent);
+				intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse("mailto:dmontanez86@gmail.com"));
+				intent.putExtra(Intent.EXTRA_SUBJECT, "Resume Inquiry");
+			    startActivity(intent);
 				break;
 			case 9:
+				url = "https://www.facebook.com/djmontanez";
+				intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse(url));
+				startActivity(intent);
 				break;
 			case 10:
+				url = "https://www.linkedin.com/pub/daniel-montanez/a2/203/8a0";
+				intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse(url));
+				startActivity(intent);
 				break;
 			default:
 				break;
@@ -150,6 +161,7 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 		    getSupportActionBar().setTitle(drawerNavItems[position]);
 		    drawerLayout.closeDrawers();
 		}
+		
 	}
 	
 }

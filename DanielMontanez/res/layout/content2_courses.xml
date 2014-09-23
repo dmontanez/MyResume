@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- School Logo, Degree Status and Graduation Year -->
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_weight=".10" >
+
+    <ImageView
+        android:id="@+id/courseSchoolLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:layout_gravity="top"
+        android:gravity="left|center"
+        android:src="@drawable/lgo_psu" />
+    
+    <TextView
+        android:id="@+id/courseDegStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="left|center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:text="DEGREE STATUS:"
+        android:textSize="15sp" />
+    </TableRow>
+    
+    <!-- School Degree Course List -->
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight=".8" >
+
+        <ScrollView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+		  	<ListView
+		  	    android:layout_width="match_parent"
+		  	    android:layout_height="match_parent" >
+		  	    
+		  	</ListView>
+        </ScrollView>
+        
+    </TableRow>
+    
+    <!-- Additional Links / School Seal -->
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_weight=".10" >
+
+    <TextView
+        android:id="@+id/courseYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="right|center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:text="SCHOOL NAME"
+        android:textSize="15sp" />
+    
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+        android:layout_gravity="bottom|right"
+        android:gravity="right|center"
+        android:src="@drawable/sl_psu" />
+	</TableRow>
+    
+</TableLayout>
