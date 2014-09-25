@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Database Data
 	// =================================================================================
 	public static final String DATABASE_NAME = "AppResume.db";
-	public static final int VERSION = 7;
+	public static final int VERSION = 8;
 
 	// =================================================================================
 	// Database Seed Data; Personal Information
@@ -48,21 +48,27 @@ public class DBHelper extends SQLiteOpenHelper {
 	// ---------------------------------------------------------------------
 	private static final String ED_UNIV_0 = "Penn State University";
 	private static final String ED_DEG_0 = "Masters";
+	private static final String ED_DEG_STAT_0 = "Graduated";
+	private static final String ED_DEG_DATE_0 = "August 2014";
 	private static final String ED_MAJ_0 = "Software Engineering";
 	private static final String ED_MIN_0 = "";
 	private static final String ED_DATE_0 = "2012 - 2014";
 
 	private static String ED_SEED_0 = "'" + ED_UNIV_0 + "', '" + ED_DEG_0
-			+ "', '" + ED_MAJ_0 + "', '" + ED_MIN_0 + "', '" + ED_DATE_0 + "'";
+			+ "', '" + ED_DEG_STAT_0 + "', '" + ED_DEG_DATE_0 + "', '"
+			+ ED_MAJ_0 + "', '" + ED_MIN_0 + "', '" + ED_DATE_0 + "'";
 
 	private static final String ED_UNIV_1 = "Cal State University, Bakersfield";
 	private static final String ED_DEG_1 = "B.S.";
+	private static final String ED_DEG_STAT_1 = "Graduated";
+	private static final String ED_DEG_DATE_1 = "June 2011";
 	private static final String ED_MAJ_1 = "Computer Science";
 	private static final String ED_MIN_1 = "Philosophy";
 	private static final String ED_DATE_1 = "2005 - 2011";
 
 	private static String ED_SEED_1 = "'" + ED_UNIV_1 + "', '" + ED_DEG_1
-			+ "', '" + ED_MAJ_1 + "', '" + ED_MIN_1 + "', '" + ED_DATE_1 + "'";
+			+ "', '" + ED_DEG_STAT_1 + "', '" + ED_DEG_DATE_1 + "', '"
+			+ ED_MAJ_1 + "', '" + ED_MIN_1 + "', '" + ED_DATE_1 + "'";
 
 	// Interest Seed
 	// -----------------------------------------------------------------------
@@ -79,6 +85,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	private static String IN_SEED_1 = "'" + IN_TITLE_1 + "', '" + IN_DESC_1
 			+ "', '" + IN_YEAR_1 + "'";
+	
+	// Course Seed
+	// -----------------------------------------------------------------------
+
+	private static String[] PSU_COURSES = { "Requirements Engineering",
+			"Software System Design (UML)", "Pattern Oriented Desing",
+			"Database Design", "Software System Architecture",
+			"Enterprise Integration", "Applied Human Computer Interaction",
+			"Program Understanding", "Web Security and Privacy",
+			"Software Project Management",
+			"Advanced Software Enginering Studio" };
+	
+	private static String[] CSUB_COURSES = { "Web Design",
+			"Advanced Computer Networks", "Database Systems",
+			"Software Engineering",
+			"Beginning and Advanced Artificial Intelligence",
+			"Programming Languages", "Advanced Computer Architecture",
+			"Methods in Applied Statistics", "Data Analysis" };
 
 	// =================================================================================
 	// =================================================================================
@@ -123,6 +147,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String ED_ID = "_id";
 	public static final String ED_UNIV = "education_university";
 	public static final String ED_DEG = "education_degree";
+	public static final String ED_DEG_STAT = "degree_status";
+	public static final String ED_DEG_DATE = "degree_date";
 	public static final String ED_MAJ = "education_major";
 	public static final String ED_MIN = "education_minor";
 	public static final String ED_DATE = "education_date";
@@ -130,14 +156,15 @@ public class DBHelper extends SQLiteOpenHelper {
 	// String for all ED_TABLE Fields.
 	// ===========================================================================
 	public static final String[] ED_FIELDS = new String[] { ED_ID, ED_UNIV,
-			ED_DEG, ED_MAJ, ED_MIN, ED_DATE };
+			ED_DEG, ED_DEG_STAT, ED_DEG_DATE, ED_MAJ, ED_MIN, ED_DATE };
 
 	// SQL Statement for creating the Education Table.
 	// ===========================================================
 	public static final String createEducation = "CREATE TABLE IF NOT EXISTS "
 			+ ED_TABLE + " ( " + ED_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ ED_UNIV + " TEXT, " + ED_DEG + " TEXT, " + ED_MAJ + " TEXT, "
-			+ ED_MIN + " TEXT, " + ED_DATE + " TEXT);";
+			+ ED_UNIV + " TEXT, " + ED_DEG + " TEXT, " + ED_DEG_STAT
+			+ " TEXT, " + ED_DEG_DATE + " TEXT, " + ED_MAJ + " TEXT, " + ED_MIN
+			+ " TEXT, " + ED_DATE + " TEXT);";
 
 	// Interest Data Fields
 	// ======================================================================================
@@ -158,6 +185,24 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ IN_TABLE + " ( " + IN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ IN_TITLE + " TEXT, " + IN_DESC + " TEXT, " + IN_DATE + " TEXT);";
 	
+	// Course Data Fields
+	// ======================================================================================
+	public static final String CRS_TABLE = "course_table";
+	public static final String CRS_ID = "_id";
+	public static final String CRS_SCHL_ID = "school_id";
+	public static final String CRS_TITLE = "course_title";
+
+	// String for CRS_TABLE Fields.
+	// =====================================================================================
+	public static final String[] CRS_FIELDS = new String[] { CRS_ID, CRS_SCHL_ID,
+			CRS_TITLE };
+
+	// SQL Statement for creating the Course Table.
+	// =====================================================================================
+	public static final String createCourse = "CREATE TABLE IF NOT EXISTS "
+			+ CRS_TABLE + " ( " + CRS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ CRS_SCHL_ID + " TEXT, " + CRS_TITLE + " TEXT);";
+	
 	// Initializer
 	// ===============================================================================================
 	public DBHelper(Context context) {
@@ -171,6 +216,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(createProfile);
 		db.execSQL(createEducation);
 		db.execSQL(createInterest);
+		db.execSQL(createCourse);
 
 		// Seed the profile.
 		db.execSQL("INSERT INTO " + PROFILE_TABLE + "(" + PROFILE_FNAME + ", "
@@ -182,11 +228,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		// Seed the education.
 		db.execSQL("INSERT INTO " + ED_TABLE + "(" + ED_UNIV + ", " + ED_DEG
-				+ ", " + ED_MAJ + ", " + ED_MIN + ", " + ED_DATE + ") VALUES ("
+				+ ", " + ED_DEG_STAT + ", " + ED_DEG_DATE + ", " + ED_MAJ + ", " + ED_MIN + ", " + ED_DATE + ") VALUES ("
 				+ ED_SEED_0 + ");");
 
 		db.execSQL("INSERT INTO " + ED_TABLE + "(" + ED_UNIV + ", " + ED_DEG
-				+ ", " + ED_MAJ + ", " + ED_MIN + ", " + ED_DATE + ") VALUES ("
+				+ ", " + ED_DEG_STAT + ", " + ED_DEG_DATE + ", " + ED_MAJ + ", " + ED_MIN + ", " + ED_DATE + ") VALUES ("
 				+ ED_SEED_1 + ");");
 
 		// Seed the interest.
@@ -197,6 +243,18 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("INSERT INTO " + IN_TABLE + "(" + IN_TITLE + ", " + IN_DESC
 				+ ", " + IN_DATE + ") VALUES ("
 				+ IN_SEED_1 + ");");
+		
+		// Seed the courses.
+		for (int i = 0; i < PSU_COURSES.length; i++) {
+			db.execSQL("INSERT INTO " + CRS_TABLE + "(" + CRS_SCHL_ID + ", "
+					+ CRS_TITLE + ") VALUES ('1', '" + PSU_COURSES[i] + "');");
+		}
+		
+		for (int i = 0; i < CSUB_COURSES.length; i++) {
+			db.execSQL("INSERT INTO " + CRS_TABLE + "(" + CRS_SCHL_ID + ", "
+					+ CRS_TITLE + ") VALUES ('2', '" + CSUB_COURSES[i] + "');");
+		}
+		
 	}
 
 	@Override
@@ -205,6 +263,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + PROFILE_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + ED_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + IN_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + CRS_TABLE);
 
 		// create fresh database table
 		this.onCreate(db);

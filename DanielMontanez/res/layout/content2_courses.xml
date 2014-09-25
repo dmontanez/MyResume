@@ -16,21 +16,22 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="5dp"
-        android:layout_gravity="top"
+        android:layout_gravity="center"
         android:gravity="left|center"
         android:src="@drawable/lgo_psu" />
-    
+
     <TextView
         android:id="@+id/courseDegStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_gravity="center"
         android:gravity="left|center"
-        android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
+        android:paddingTop="5dp"
         android:text="DEGREE STATUS:"
         android:textSize="15sp" />
+
     </TableRow>
     
     <!-- School Degree Course List -->
@@ -65,7 +66,7 @@
         android:id="@+id/courseYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:gravity="right|center"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
@@ -78,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:padding="5dp"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="center"
         android:gravity="right|center"
         android:src="@drawable/sl_psu" />
 	</TableRow>
