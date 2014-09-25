@@ -1,4 +1,9 @@
-package com.example.danielmontanez;
+package summary;
+
+import com.example.danielmontanez.DBHelper;
+import com.example.danielmontanez.R;
+import com.example.danielmontanez.R.id;
+import com.example.danielmontanez.R.layout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

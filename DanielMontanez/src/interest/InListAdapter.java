@@ -1,6 +1,12 @@
-package com.example.danielmontanez;
+package interest;
 
 import java.util.List;
+
+import com.example.danielmontanez.DBHelper;
+import com.example.danielmontanez.R;
+import com.example.danielmontanez.R.drawable;
+import com.example.danielmontanez.R.id;
+import com.example.danielmontanez.R.layout;
 
 import android.content.Context;
 import android.view.LayoutInflater;

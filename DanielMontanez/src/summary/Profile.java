@@ -4,7 +4,7 @@
  * Daniel J. Montanez
  */
 
-package com.example.danielmontanez;
+package summary;
 
 public class Profile {
 	// Class Variable Declarations

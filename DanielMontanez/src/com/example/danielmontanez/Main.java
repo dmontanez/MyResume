@@ -1,5 +1,10 @@
 package com.example.danielmontanez;
 
+import interest.InterestsActivity;
+import education.EducationActivity;
+import experience.ExperienceActivity;
+import skill.SkillsActivity;
+import summary.SummaryActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;

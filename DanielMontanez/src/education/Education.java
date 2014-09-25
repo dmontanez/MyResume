@@ -1,4 +1,4 @@
-package com.example.danielmontanez;
+package education;
 
 public class Education {
 	// Class Variable Declarations

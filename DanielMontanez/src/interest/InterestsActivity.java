@@ -1,4 +1,8 @@
-package com.example.danielmontanez;
+package interest;
+
+import com.example.danielmontanez.R;
+import com.example.danielmontanez.R.id;
+import com.example.danielmontanez.R.layout;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

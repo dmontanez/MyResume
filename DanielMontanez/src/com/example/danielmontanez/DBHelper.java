@@ -6,8 +6,15 @@
 
 package com.example.danielmontanez;
 
+import interest.Interest;
+
 import java.util.LinkedList;
 import java.util.List;
+
+import education.Course;
+import education.Education;
+
+import summary.Profile;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -347,47 +354,71 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 	
 	// Interest manipulation methods
-		// =================================================================================
-		public Interest getInterest(int id) {
-			SQLiteDatabase db = this.getWritableDatabase();
+	// =================================================================================
+	public Interest getInterest(int id) {
+		SQLiteDatabase db = this.getWritableDatabase();
 
-			Cursor cursor = db.query(IN_TABLE, IN_FIELDS, IN_ID + " = ?",
-					new String[] { String.valueOf(id) }, null, null, null, null);
+		Cursor cursor = db.query(IN_TABLE, IN_FIELDS, IN_ID + " = ?",
+				new String[] { String.valueOf(id) }, null, null, null, null);
 
-			if (cursor != null)
-				cursor.moveToFirst();
+		if (cursor != null)
+			cursor.moveToFirst();
 
-			Interest interest = new Interest();
-			interest.setId(Integer.parseInt(cursor.getString(0)));
-			interest.setTitle(cursor.getString(1));
-			interest.setDescription(cursor.getString(2));
-			interest.setDate(cursor.getString(3));
+		Interest interest = new Interest();
+		interest.setId(Integer.parseInt(cursor.getString(0)));
+		interest.setTitle(cursor.getString(1));
+		interest.setDescription(cursor.getString(2));
+		interest.setDate(cursor.getString(3));
 
-			return interest;
-		}
-
+		return interest;
+	}
 		public List<Interest> getAllInterest() {
 
-			List<Interest> interests = new LinkedList<Interest>();
-			String query = "SELECT * FROM " + IN_TABLE;
+		List<Interest> interests = new LinkedList<Interest>();
+		String query = "SELECT * FROM " + IN_TABLE;
 
-			SQLiteDatabase db = this.getWritableDatabase();
-			Cursor cursor = db.rawQuery(query, null);
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(query, null);
 
-			Interest interest = null;
+		Interest interest = null;
 
-			if (cursor.moveToFirst()) {
-				do {
-					interest = new Interest();
-					interest.setId(Integer.parseInt(cursor.getString(0)));
-					interest.setTitle(cursor.getString(1));
-					interest.setDescription(cursor.getString(2));
-					interest.setDate(cursor.getString(3));
-					interests.add(interest);
-				} while (cursor.moveToNext());
-			}
-
-			return interests;
+		if (cursor.moveToFirst()) {
+			do {
+				interest = new Interest();
+				interest.setId(Integer.parseInt(cursor.getString(0)));
+				interest.setTitle(cursor.getString(1));
+				interest.setDescription(cursor.getString(2));
+				interest.setDate(cursor.getString(3));
+				interests.add(interest);
+			} while (cursor.moveToNext());
 		}
 
+		return interests;
+	}
+
+	// Interest manipulation methods
+	// =================================================================================
+		public List<Course> getEdCourses(int school_id) {
+
+		List<Course> courses = new LinkedList<Course>();
+		String query = "SELECT * FROM " + CRS_TABLE + " WHERE " + CRS_SCHL_ID + " = " + school_id;
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(query, null);
+
+		Course course = null;
+
+		if (cursor.moveToFirst()) {
+			do {
+				course = new Course();
+				course.setId(Integer.parseInt(cursor.getString(0)));
+				course.setSchoolId(cursor.getString(1));
+				course.setTitle(cursor.getString(2));
+				courses.add(course);
+			} while (cursor.moveToNext());
+		}
+
+		return courses;
+	}
+		
 }
