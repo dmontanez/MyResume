@@ -1,57 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"  >
 
     <!-- School Logo, Degree Status and Graduation Year -->
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_weight=".10" >
+        android:layout_height="fill_parent"
+        android:gravity="right"
+        android:layout_weight=".15"
+        android:background="#CCCCCC" >
 
-    <ImageView
+     <ImageView
         android:id="@+id/courseSchoolLogo"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_gravity="center"
-        android:gravity="left|center"
-        android:src="@drawable/lgo_psu" />
-
+        android:layout_gravity="bottom|right"
+        android:gravity="right|center"
+        android:src="@drawable/sl_psu" />
+         
     <TextView
-        android:id="@+id/courseDegStatus"
+        android:id="@+id/schoolDegStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="left|center"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:text="DEGREE STATUS:"
+        android:layout_gravity="center|right"
+        android:gravity="right|center"
+        android:layout_marginRight="40dp"
+        android:text="DEGREE STATUS"
         android:textSize="15sp" />
-
-    </TableRow>
+    
+   
+	</TableRow>
     
     <!-- School Degree Course List -->
-    <TableRow
+   <TableRow
         android:id="@+id/tableRow2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight=".8" >
-
-        <ScrollView 
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+        android:layout_weight=".7" >
 
 		  	<ListView
 		  	    android:id="@+id/courseList"
-		  	    android:layout_width="match_parent"
-		  	    android:layout_height="match_parent" >
+		  	    android:layout_width="wrap_content"
+		  	    android:layout_height="fill_parent"
+		  	    android:padding="5dp" >
 		  	    
 		  	</ListView>
-        </ScrollView>
         
     </TableRow>
     
@@ -59,15 +56,16 @@
     <TableRow
         android:id="@+id/tableRow3"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:gravity="right"
-        android:layout_weight=".10" >
+        android:layout_weight=".15"
+        android:background="#CCCCCC" >
 
     <TextView
-        android:id="@+id/courseOther"
+        android:id="@+id/schoolName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center|right"
         android:gravity="right|center"
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
@@ -78,9 +76,9 @@
     <ImageView
         android:id="@+id/courseSchoolSeal"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:padding="5dp"
-        android:layout_gravity="center"
+        android:layout_gravity="top|right"
         android:gravity="right|center"
         android:src="@drawable/sl_psu" />
 	</TableRow>

@@ -13,6 +13,7 @@ import java.util.List;
 
 import education.Course;
 import education.Education;
+import experience.Experience;
 
 import summary.Profile;
 
@@ -25,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Database Data
 	// =================================================================================
 	public static final String DATABASE_NAME = "AppResume.db";
-	public static final int VERSION = 8;
+	public static final int VERSION = 10;
 
 	// =================================================================================
 	// Database Seed Data; Personal Information
@@ -65,7 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ "', '" + ED_DEG_STAT_0 + "', '" + ED_DEG_DATE_0 + "', '"
 			+ ED_MAJ_0 + "', '" + ED_MIN_0 + "', '" + ED_DATE_0 + "'";
 
-	private static final String ED_UNIV_1 = "Cal State University, Bakersfield";
+	private static final String ED_UNIV_1 = "CSU Bakersfield";
 	private static final String ED_DEG_1 = "B.S.";
 	private static final String ED_DEG_STAT_1 = "Graduated";
 	private static final String ED_DEG_DATE_1 = "June 2011";
@@ -111,6 +112,21 @@ public class DBHelper extends SQLiteOpenHelper {
 			"Programming Languages", "Advanced Computer Architecture",
 			"Methods in Applied Statistics", "Data Analysis" };
 
+	// Interest Seed
+	// -----------------------------------------------------------------------
+	private static final String EX_TITLE_0 = "Computer Sciences Corporation";
+	private static final String EX_POSITION_0 = "Logistics Engineer, Professional";
+	private static final String EX_DATE_0 = "June 2011 - Present";
+
+	private static String EX_SEED_0 = "'" + EX_TITLE_0 + "', '" + EX_POSITION_0
+			+ "', '" + EX_DATE_0 + "'";
+
+	private static final String EX_TITLE_1 = "Occidental Petroleum";
+	private static final String EX_POSITION_1 = "Assisstant Regulatory Analyst";
+	private static final String EX_DATE_1 = "August 2010 - June 2011";
+
+	private static String EX_SEED_1 = "'" + EX_TITLE_1 + "', '" + EX_POSITION_1
+			+ "', '" + EX_DATE_1 + "'";
 	// =================================================================================
 	// =================================================================================
 
@@ -210,6 +226,25 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ CRS_TABLE + " ( " + CRS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ CRS_SCHL_ID + " TEXT, " + CRS_TITLE + " TEXT);";
 	
+	// Interest Data Fields
+	// ======================================================================================
+	public static final String EX_TABLE = "experience_table";
+	public static final String EX_ID = "_id";
+	public static final String EX_TITLE = "experience_title";
+	public static final String EX_POSITION = "experience_position";
+	public static final String EX_DATE = "experience_date";
+
+	// String for IN_TABLE Fields.
+	// =====================================================================================
+	public static final String[] EX_FIELDS = new String[] { EX_ID, EX_TITLE,
+			EX_POSITION, EX_DATE };
+
+	// SQL Statement for creating the Interest Table.
+	// =====================================================================================
+	public static final String createExperience = "CREATE TABLE IF NOT EXISTS "
+			+ EX_TABLE + " ( " + EX_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ EX_TITLE + " TEXT, " + EX_POSITION + " TEXT, " + EX_DATE + " TEXT);";
+		
 	// Initializer
 	// ===============================================================================================
 	public DBHelper(Context context) {
@@ -224,6 +259,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(createEducation);
 		db.execSQL(createInterest);
 		db.execSQL(createCourse);
+		db.execSQL(createExperience);
 
 		// Seed the profile.
 		db.execSQL("INSERT INTO " + PROFILE_TABLE + "(" + PROFILE_FNAME + ", "
@@ -262,6 +298,15 @@ public class DBHelper extends SQLiteOpenHelper {
 					+ CRS_TITLE + ") VALUES ('2', '" + CSUB_COURSES[i] + "');");
 		}
 		
+		// Seed the interest.
+		db.execSQL("INSERT INTO " + EX_TABLE + "(" + EX_TITLE + ", " + EX_POSITION
+			+ ", " + EX_DATE + ") VALUES ("
+			+ EX_SEED_0 + ");");
+				
+		db.execSQL("INSERT INTO " + EX_TABLE + "(" + EX_TITLE + ", " + EX_POSITION
+				+ ", " + EX_DATE + ") VALUES ("
+				+ EX_SEED_1 + ");");
+		
 	}
 
 	@Override
@@ -271,6 +316,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + ED_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + IN_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + CRS_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + EX_TABLE);
 
 		// create fresh database table
 		this.onCreate(db);
@@ -320,9 +366,11 @@ public class DBHelper extends SQLiteOpenHelper {
 		education.setId(Integer.parseInt(cursor.getString(0)));
 		education.setUniversity(cursor.getString(1));
 		education.setDegree(cursor.getString(2));
-		education.setMajor(cursor.getString(3));
-		education.setMinor(cursor.getString(4));
-		education.setDate(cursor.getString(5));
+		education.setDegreeStatus(cursor.getString(3));
+		education.setDegreeDate(cursor.getString(4));
+		education.setMajor(cursor.getString(5));
+		education.setMinor(cursor.getString(6));
+		education.setDate(cursor.getString(7));
 
 		return education;
 	}
@@ -343,9 +391,11 @@ public class DBHelper extends SQLiteOpenHelper {
 				education.setId(Integer.parseInt(cursor.getString(0)));
 				education.setUniversity(cursor.getString(1));
 				education.setDegree(cursor.getString(2));
-				education.setMajor(cursor.getString(3));
-				education.setMinor(cursor.getString(4));
-				education.setDate(cursor.getString(5));
+				education.setDegreeStatus(cursor.getString(3));
+				education.setDegreeDate(cursor.getString(4));
+				education.setMajor(cursor.getString(5));
+				education.setMinor(cursor.getString(6));
+				education.setDate(cursor.getString(7));
 				educations.add(education);
 			} while (cursor.moveToNext());
 		}
@@ -396,7 +446,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		return interests;
 	}
 
-	// Interest manipulation methods
+	// Course manipulation methods
 	// =================================================================================
 		public List<Course> getEdCourses(int school_id) {
 
@@ -420,5 +470,48 @@ public class DBHelper extends SQLiteOpenHelper {
 
 		return courses;
 	}
-		
+	
+	// Interest manipulation methods
+	// =================================================================================
+	public Experience getExperience(int id) {
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		Cursor cursor = db.query(EX_TABLE, EX_FIELDS, EX_ID + " = ?",
+				new String[] { String.valueOf(id) }, null, null, null, null);
+
+		if (cursor != null)
+			cursor.moveToFirst();
+
+		Experience experience = new Experience();
+		experience.setId(Integer.parseInt(cursor.getString(0)));
+		experience.setTitle(cursor.getString(1));
+		experience.setPosition(cursor.getString(2));
+		experience.setDate(cursor.getString(3));
+
+		return experience;
+	}
+	
+	public List<Experience> getAllExperience() {
+
+		List<Experience> experiences = new LinkedList<Experience>();
+		String query = "SELECT * FROM " + EX_TABLE;
+
+		SQLiteDatabase db = this.getWritableDatabase();
+		Cursor cursor = db.rawQuery(query, null);
+
+		Experience experience = null;
+
+		if (cursor.moveToFirst()) {
+			do {
+				experience = new Experience();
+				experience.setId(Integer.parseInt(cursor.getString(0)));
+				experience.setTitle(cursor.getString(1));
+				experience.setPosition(cursor.getString(2));
+				experience.setDate(cursor.getString(3));
+				experiences.add(experience);
+			} while (cursor.moveToNext());
+		}
+
+		return experiences;
+	}
 }

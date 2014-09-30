@@ -33,6 +33,11 @@
             android:label="@string/app_name" >
         </activity>
         
+        <!-- Course Activity -->
+        <activity
+            android:name="education.CourseActivity"
+            android:label="Course Activity" >
+        </activity>
     </application>
 
 </manifest>
