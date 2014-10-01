@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Database Data
 	// =================================================================================
 	public static final String DATABASE_NAME = "AppResume.db";
-	public static final int VERSION = 10;
+	public static final int VERSION = 11;
 
 	// =================================================================================
 	// Database Seed Data; Personal Information
@@ -117,16 +117,25 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String EX_TITLE_0 = "Computer Sciences Corporation";
 	private static final String EX_POSITION_0 = "Logistics Engineer, Professional";
 	private static final String EX_DATE_0 = "June 2011 - Present";
+	private static final String EX_SUMMARY_0 =
+		"• Provide key analysis necessary for demonstrating program success in the form of Operational Availability.\n"
+		+ "• Developed unique Provisioning algorithm for generating spares procurement recommendations.\n"
+		+ "• Generate recommendations to maximize return on investment of program assets.\n"
+		+ "• Developed and utilize database for management and analysis of program trouble tickets.\n"
+		+ "• Recent acclaim in annual performance evaluation.";
 
 	private static String EX_SEED_0 = "'" + EX_TITLE_0 + "', '" + EX_POSITION_0
-			+ "', '" + EX_DATE_0 + "'";
+			+ "', '" + EX_DATE_0 + "', '" + EX_SUMMARY_0 + "'";
 
 	private static final String EX_TITLE_1 = "Occidental Petroleum";
 	private static final String EX_POSITION_1 = "Assisstant Regulatory Analyst";
 	private static final String EX_DATE_1 = "August 2010 - June 2011";
+	private static final String EX_SUMMARY_1 =
+		"• Reviewed drilling specification sheets for accuracy."
+		+ "• Developed MS Access Database for evaluating drilling plot lease compliance record.";
 
 	private static String EX_SEED_1 = "'" + EX_TITLE_1 + "', '" + EX_POSITION_1
-			+ "', '" + EX_DATE_1 + "'";
+			+ "', '" + EX_DATE_1 + "', '" + EX_SUMMARY_1 + "'";
 	// =================================================================================
 	// =================================================================================
 
@@ -233,17 +242,18 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String EX_TITLE = "experience_title";
 	public static final String EX_POSITION = "experience_position";
 	public static final String EX_DATE = "experience_date";
+	public static final String EX_SUMMARY = "experience_summary";
 
 	// String for IN_TABLE Fields.
 	// =====================================================================================
 	public static final String[] EX_FIELDS = new String[] { EX_ID, EX_TITLE,
-			EX_POSITION, EX_DATE };
+			EX_POSITION, EX_DATE, EX_SUMMARY };
 
 	// SQL Statement for creating the Interest Table.
 	// =====================================================================================
 	public static final String createExperience = "CREATE TABLE IF NOT EXISTS "
 			+ EX_TABLE + " ( " + EX_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ EX_TITLE + " TEXT, " + EX_POSITION + " TEXT, " + EX_DATE + " TEXT);";
+			+ EX_TITLE + " TEXT, " + EX_POSITION + " TEXT, " + EX_DATE + " TEXT, " + EX_SUMMARY + " TEXT);";
 		
 	// Initializer
 	// ===============================================================================================
@@ -298,13 +308,13 @@ public class DBHelper extends SQLiteOpenHelper {
 					+ CRS_TITLE + ") VALUES ('2', '" + CSUB_COURSES[i] + "');");
 		}
 		
-		// Seed the interest.
+		// Seed the experience.
 		db.execSQL("INSERT INTO " + EX_TABLE + "(" + EX_TITLE + ", " + EX_POSITION
-			+ ", " + EX_DATE + ") VALUES ("
+			+ ", " + EX_DATE + ", " + EX_SUMMARY + ") VALUES ("
 			+ EX_SEED_0 + ");");
 				
 		db.execSQL("INSERT INTO " + EX_TABLE + "(" + EX_TITLE + ", " + EX_POSITION
-				+ ", " + EX_DATE + ") VALUES ("
+				+ ", " + EX_DATE + ", " + EX_SUMMARY + ") VALUES ("
 				+ EX_SEED_1 + ");");
 		
 	}
@@ -487,6 +497,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		experience.setTitle(cursor.getString(1));
 		experience.setPosition(cursor.getString(2));
 		experience.setDate(cursor.getString(3));
+		experience.setSummary(cursor.getString(4));
 
 		return experience;
 	}
@@ -508,6 +519,7 @@ public class DBHelper extends SQLiteOpenHelper {
 				experience.setTitle(cursor.getString(1));
 				experience.setPosition(cursor.getString(2));
 				experience.setDate(cursor.getString(3));
+				experience.setSummary(cursor.getString(4));
 				experiences.add(experience);
 			} while (cursor.moveToNext());
 		}

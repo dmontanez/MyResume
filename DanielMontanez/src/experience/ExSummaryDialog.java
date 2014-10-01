@@ -9,31 +9,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ExSummaryDialog extends DialogFragment{
-	private EditText mEditText;
+	private TextView exSummary, exTitle;
 
     public ExSummaryDialog() {}
 
-    public static ExSummaryDialog newInstance(String title) {
+    public static ExSummaryDialog newInstance(String title, String summary) {
     	ExSummaryDialog frag = new ExSummaryDialog();
         Bundle args = new Bundle();
         args.putString("title", title);
+        args.putString("summary", summary);
         frag.setArguments(args);
         return frag;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_experience_summary, container);
-        mEditText = (EditText) view.findViewById(R.id.txt_your_name);
+        exTitle = (TextView) view.findViewById(R.id.ex_summary_title);
+        exSummary = (TextView) view.findViewById(R.id.ex_summary);
+        
         String title = getArguments().getString("title");
-        getDialog().setTitle(title);
-        // Show soft keyboard automatically
-        mEditText.requestFocus();
-        getDialog().getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        String summary = getArguments().getString("summary");
+        
+        exTitle.setText(title);
+        exSummary.setText(summary);
+        getDialog().setTitle("Summary");
+        
         return view;
     }
 }

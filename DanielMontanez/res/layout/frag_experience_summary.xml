@@ -1,15 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/edit_name"
-    android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:layout_gravity="center" android:orientation="vertical"  >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"  >
 
     <TextView
-        android:id="@+id/lbl_your_name" android:text="Your name" 
-        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        android:id="@+id/ex_summary_title"
+        android:text="Experience Title" 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:layout_weight=".5">
 
-    <EditText
-        android:id="@+id/txt_your_name"
-        android:layout_width="match_parent"  android:layout_height="wrap_content" 
-        android:inputType="text"
-        android:imeOptions="actionDone" />
+    <TextView
+        android:id="@+id/ex_summary"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+
+    </ScrollView>
 </LinearLayout>

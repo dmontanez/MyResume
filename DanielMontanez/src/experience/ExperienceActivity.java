@@ -1,5 +1,6 @@
 package experience;
 
+import com.example.danielmontanez.DBHelper;
 import com.example.danielmontanez.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,12 +17,13 @@ public class ExperienceActivity extends Fragment implements OnItemClickListener{
 	View view;
 	ListView experienceList;
 	ExListAdapter exAdapter;
+	DBHelper db;
 	
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.content_experience, container, false);
+		db = new DBHelper(getActivity());
 		
 		return view;
 	}
@@ -43,13 +45,16 @@ public class ExperienceActivity extends Fragment implements OnItemClickListener{
 	}
 	
 	private void selectItem(int position) {	
-		showEditDialog();
+		showEditDialog(position);
 	}
 
-	private void showEditDialog() {
-	      FragmentManager fm = getFragmentManager();
-	      ExSummaryDialog editNameDialog = ExSummaryDialog.newInstance("Some Title");
-	      editNameDialog.show(fm, "fragment_edit_name");
+	private void showEditDialog(int position) {
+		
+		Experience experience = db.getExperience(position + 1);
+		
+	    FragmentManager fm = getFragmentManager();
+	    ExSummaryDialog editNameDialog = ExSummaryDialog.newInstance(experience.getTitle(), experience.getSummary());
+	    editNameDialog.show(fm, "fragment_edit_name");
 	  }
 	
 }

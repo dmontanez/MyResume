@@ -1143,6 +1143,8 @@ containing a value of this type.
         public static final int exImage=0x7f05005e;
         public static final int exPosition=0x7f05005d;
         public static final int exTitle=0x7f05005c;
+        public static final int ex_summary=0x7f050062;
+        public static final int ex_summary_title=0x7f050061;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
         public static final int experienceList=0x7f050049;
@@ -1157,7 +1159,6 @@ containing a value of this type.
         public static final int inImage=0x7f050063;
         public static final int inTitle=0x7f050064;
         public static final int interestList=0x7f05004a;
-        public static final int lbl_your_name=0x7f050061;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int mainContent=0x7f05003d;
@@ -1204,7 +1205,6 @@ containing a value of this type.
         public static final int tableRowSummary=0x7f050054;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
-        public static final int txt_your_name=0x7f050062;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
