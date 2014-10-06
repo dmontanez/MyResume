@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	
 	//Layout object declaration
 	private DrawerLayout drawerLayout;
-	private ListView listView, listView2;
+	private ListView listView;
 	
 	//Other declarations.
 	private ActionBarDrawerToggle drawerListener; //listener for the drawer; handles the toggling.
@@ -54,13 +55,13 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 			@Override //What to do when the drawer is opened.
 			public void onDrawerOpened(View drawerView) {
 				super.onDrawerOpened(drawerView);
-				//Toast.makeText(Main.this, " Drawer Opened ", Toast.LENGTH_SHORT).show();
+				supportInvalidateOptionsMenu();
 			}
 
 			@Override //What to do when the drawer is closed.
 			public void onDrawerClosed(View drawerView) {
 				super.onDrawerClosed(drawerView);
-				//Toast.makeText(Main.this, " Drawer Closed ", Toast.LENGTH_SHORT).show();
+				supportInvalidateOptionsMenu();
 			}
 		};
 		drawerLayout.setDrawerListener(drawerListener); //Set the  layout object listener.
@@ -79,8 +80,14 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 	
 	@Override //Allows home button to open Navigation Drawer if applicable.
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if(drawerListener.onOptionsItemSelected(item)) {return true;}
-		return super.onOptionsItemSelected(item);
+        if (drawerListener.onOptionsItemSelected(item)) {
+            return true;
+     }
+    // Handle action bar actions click
+    switch (item.getItemId()) {
+        default :
+        	return super.onOptionsItemSelected(item);
+       }
 	}
 	
 	@Override //Lets the system change the Navigation Drawer configuration when needed.
@@ -158,15 +165,19 @@ public class Main extends ActionBarActivity implements OnItemClickListener{
 			default:
 				break;
 		}
-		
-		if (position < 6) {
+		if(fragment != null && position < 6) {
 			FragmentManager frgManager = getSupportFragmentManager();
-		    frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
-		        
-		    getSupportActionBar().setTitle(drawerNavItems[position]);
-		    drawerLayout.closeDrawers();
-		}
+			frgManager.beginTransaction().replace(R.id.mainContent, fragment).commit();
+			getSupportActionBar().setTitle(drawerNavItems[position]);
+			drawerLayout.closeDrawer(listView);
+		} else {
+            // error in creating fragment
+            Log.e("MainActivity", "Error in creating fragment");
+          }
+
 		
 	}
+	
+
 	
 }

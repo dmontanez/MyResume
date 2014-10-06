@@ -53,7 +53,7 @@ public class ExperienceActivity extends Fragment implements OnItemClickListener{
 		Experience experience = db.getExperience(position + 1);
 		
 	    FragmentManager fm = getFragmentManager();
-	    ExSummaryDialog editNameDialog = ExSummaryDialog.newInstance(experience.getTitle(), experience.getSummary());
+	    ExSummaryDialog editNameDialog = ExSummaryDialog.newInstance(experience.getPosition(), experience.getSummary());
 	    editNameDialog.show(fm, "fragment_edit_name");
 	  }
 	

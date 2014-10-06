@@ -2,9 +2,24 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string name="app_name">Daniel Montanez</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world!</string>  
+    <string name="action_settings">Settings</string>
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close Navigation Drawer</string>
+    
+    <string name="my_skills">
+        C++, C#, Java, VBA
+		\n\n
+		MS SQL Server, Oracle SQL Server, SQL
+		\n\n
+		CSS, HTML, Java Script, PHP, XML
+		\n\n
+		Ruby on Rails
+		\n\n
+		ADT, Eclipse, NetBeans, WebMatrix
+		\n\n
+		MatLab, R
+    </string>
     
     <string-array name="drawerNavItems">
         <item>MENU</item>

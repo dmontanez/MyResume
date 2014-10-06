@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	// Database Data
 	// =================================================================================
 	public static final String DATABASE_NAME = "AppResume.db";
-	public static final int VERSION = 11;
+	public static final int VERSION = 12;
 
 	// =================================================================================
 	// Database Seed Data; Personal Information
@@ -118,10 +118,10 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String EX_POSITION_0 = "Logistics Engineer, Professional";
 	private static final String EX_DATE_0 = "June 2011 - Present";
 	private static final String EX_SUMMARY_0 =
-		"• Provide key analysis necessary for demonstrating program success in the form of Operational Availability.\n"
-		+ "• Developed unique Provisioning algorithm for generating spares procurement recommendations.\n"
-		+ "• Generate recommendations to maximize return on investment of program assets.\n"
-		+ "• Developed and utilize database for management and analysis of program trouble tickets.\n"
+		"• Provide key analysis necessary for demonstrating program success in the form of Operational Availability.\n\n"
+		+ "• Developed unique Provisioning algorithm for generating spares procurement recommendations.\n\n"
+		+ "• Generate recommendations to maximize return on investment of program assets.\n\n"
+		+ "• Developed and utilize database for management and analysis of program trouble tickets.\n\n"
 		+ "• Recent acclaim in annual performance evaluation.";
 
 	private static String EX_SEED_0 = "'" + EX_TITLE_0 + "', '" + EX_POSITION_0
@@ -131,7 +131,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String EX_POSITION_1 = "Assisstant Regulatory Analyst";
 	private static final String EX_DATE_1 = "August 2010 - June 2011";
 	private static final String EX_SUMMARY_1 =
-		"• Reviewed drilling specification sheets for accuracy."
+		"• Reviewed drilling specification sheets for accuracy.\n\n"
 		+ "• Developed MS Access Database for evaluating drilling plot lease compliance record.";
 
 	private static String EX_SEED_1 = "'" + EX_TITLE_1 + "', '" + EX_POSITION_1
