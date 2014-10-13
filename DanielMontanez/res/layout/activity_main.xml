@@ -2,18 +2,25 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+<!-- Main Content / Fragment Container -->    
     <FrameLayout
         android:id="@+id/mainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />    
     
-	<ListView 
-	    android:id="@+id/drawerList"
-	    android:background="#F0F0F0"
-	    android:layout_width="240dp"
+<!-- Navigation Drawer -->
+    <LinearLayout
+        android:id="@+id/slidingDrawer"
+       	android:layout_width="240dp"
 	    android:layout_height="match_parent"
-	    android:layout_gravity="start"
-	    android:choiceMode="singleChoice" />
+	    android:layout_gravity="start" >
+        
+		<ListView 
+		    android:id="@+id/drawerList"
+		    android:background="#F0F0F0"
+		    android:layout_width="240dp"
+		    android:layout_height="match_parent" />
+		
+	</LinearLayout>
 	
 </android.support.v4.widget.DrawerLayout>
